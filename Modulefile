@@ -1,10 +1,10 @@
 name	'lesaux/bind-records'
 version '0.0.1'
-source	'git://github.com/inkblot/puppet-bind'
-author	'inkblot'
+source	'https://github.com/lesaux/puppet-bind-records.git'
+author	'adapted from inkblot by lesaux'
 license	'Apache 2.0'
 summary 'manage BIND records'
 description 'A Puppet module to manage dns record with nsupdate'
-project_page 'https://github.com/inkblot/puppet-bind'
+project_page 'https://github.com/lesaux/puppet-bind-records'
 
 dependency 'puppetlabs/concat', '>= 1.0.0'
