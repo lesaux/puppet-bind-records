@@ -1,4 +1,4 @@
-bind::records
+bindrecords
 ====
 
 ## Description
