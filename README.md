@@ -8,7 +8,7 @@ Overview
 --------
 
 Use a hash to maintain records:
-
+```
 IN/CNAME/www.example.com:
   ensure: present
   rrdata:
@@ -39,3 +39,4 @@ IN/PTR/1.0.168.192.in-addr.arpa:
   keyname: rndc-key
   hmac: hmac-md5
   secret: yoursecretkey
+```
