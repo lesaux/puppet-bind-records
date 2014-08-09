@@ -1,4 +1,4 @@
-name	'lesaux/bind-records'
+name	'lesaux/bindrecords'
 version '0.0.1'
 source	'https://github.com/lesaux/puppet-bind-records.git'
 author	'adapted from inkblot by lesaux'
