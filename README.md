@@ -2,8 +2,9 @@ bind::records
 ====
 
 ## Description
-nsupdate dns records
-=======
+nsupdate dns records with puppet
+
+
 Overview
 --------
 
