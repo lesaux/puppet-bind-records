@@ -1,6 +1,9 @@
 bindrecords
 ====
 
+[![Build
+Status](https://secure.travis-ci.org/garethr/garethr-diamond.png)](http://travis-ci.org/garethr/garethr-diamond)
+
 ## Description
 nsupdate dns records with puppet
 
