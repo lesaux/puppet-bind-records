@@ -1,31 +1,28 @@
-require 'puppetlabs_spec_helper/rake_tasks'
-require 'puppet-lint/tasks/puppet-lint'
-require 'puppet-syntax/tasks/puppet-syntax'
+require 'rake'
+require 'rspec/core/rake_task'
 
-begin
-  require 'puppet_blacksmith/rake_tasks'
-rescue LoadError
+desc "Run all RSpec code examples"
+RSpec::Core::RakeTask.new(:rspec) do |t|
+  t.rspec_opts = File.read("spec/spec.opts").chomp || ""
 end
 
-PuppetLint.configuration.send("disable_80chars")
-PuppetLint.configuration.log_format = "%{path}:%{linenumber}:%{check}:%{KIND}:%{message}"
-PuppetLint.configuration.fail_on_warnings = true
+SPEC_SUITES = (Dir.entries('spec') - ['.', '..','fixtures']).select {|e| File.directory? "spec/#{e}" }
+namespace :rspec do
+  SPEC_SUITES.each do |suite|
+    desc "Run #{suite} RSpec code examples"
+    RSpec::Core::RakeTask.new(suite) do |t|
+      t.pattern = "spec/#{suite}/**/*_spec.rb"
+      t.rspec_opts = File.read("spec/spec.opts").chomp || ""
+    end
+  end
+end
+task :default => :rspec
 
-# Forsake support for Puppet 2.6.2 for the benefit of cleaner code.
-# http://puppet-lint.com/checks/class_parameter_defaults/
-PuppetLint.configuration.send('disable_class_parameter_defaults')
-# http://puppet-lint.com/checks/class_inherits_from_params_class/
-PuppetLint.configuration.send('disable_class_inherits_from_params_class')
-
-exclude_paths = [
-  "pkg/**/*",
-  "vendor/**/*",
-  "spec/**/*",
-]
-PuppetLint.configuration.ignore_paths = exclude_paths
-
-task :test => [
-  :syntax,
-  :lint,
-  :spec,
-]
+begin
+  if Gem::Specification::find_by_name('puppet-lint')
+    require 'puppet-lint/tasks/puppet-lint'
+    PuppetLint.configuration.ignore_paths = ["spec/**/*.pp", "vendor/**/*.pp"]
+    task :default => [:rspec, :lint]
+  end
+rescue Gem::LoadError
+end
