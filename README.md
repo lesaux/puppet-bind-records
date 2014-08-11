@@ -2,7 +2,7 @@ bindrecords
 ====
 
 [![Build
-Status](https://secure.travis-ci.org/lesaux/lesaux-bindrecords.png)](http://travis-ci.org/lesaux/lesaux-bindrecords)
+Status](https://secure.travis-ci.org/lesaux/lesaux-bind-records.png)](http://travis-ci.org/lesaux/lesaux-bind-records)
 
 ## Description
 nsupdate dns records with puppet
