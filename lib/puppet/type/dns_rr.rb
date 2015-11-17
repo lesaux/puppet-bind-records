@@ -39,6 +39,11 @@ Puppet::Type.newtype(:dns_rr) do
     end
   end
 
+  newparam(:purge) do
+    desc 'purge rrdata'
+    defaultto true
+  end
+
   newparam(:zone) do
     desc 'The zone to update'
   end

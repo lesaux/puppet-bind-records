@@ -28,6 +28,7 @@ IN/A/server.example.com:
   rrdata:
   - 192.168.0.1
   ttl: 86400
+  purge: false
   zone: example.com
   server: ns.example.com
   keyname: rndc-key
