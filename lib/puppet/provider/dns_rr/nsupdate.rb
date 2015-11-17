@@ -27,7 +27,7 @@ Puppet::Type.type(:dns_rr).provide(:nsupdate) do
   def flush
     return if @properties.empty?
     update do |file|
-      destructo(file)
+      destructo(file) if resource[:purge]
       accio(file)
     end
   end
